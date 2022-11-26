@@ -14,6 +14,25 @@ const Trees = () => {
 		}
 	};
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.log(e);
+		const user_id = localStorage.getItem('user_id');
+		if (!user_id) {
+			return;
+		}
+		try {
+			const data = await axios.post('http://jalsol.xyz:5000/add_tree', {
+				user_id,
+				tree_id: e.target.id,
+			});
+			console.log(data);
+			window.location.href = '/my-trees';
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	useEffect(() => {
 		getData();
 	}, []);
@@ -36,8 +55,15 @@ const Trees = () => {
 							<div className='card-actions justify-start'>
 								<div className='badge badge-outline capitalize'>{el.space}</div>
 								<div className='badge badge-outline'>{el.period_display}</div>
+								<div className='badge badge-outline'>
+									{el.temperature} degree
+								</div>
+								<div className='badge badge-outline'>
+									{el.upper_moisture_level}
+								</div>
+								<div className='badge badge-outline'>{el.upper_pH_level}pH</div>
 							</div>
-							<form action='#'>
+							<form onSubmit={handleSubmit} action='#'>
 								<button
 									type='submit'
 									className='btn border-none bg-teal-700 focus:bg-teal-500 mt-4'
