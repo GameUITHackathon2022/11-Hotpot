@@ -40,7 +40,7 @@ const Trees = () => {
 		<main className='flex items-center content-center flex-col gap-[2rem] mt-[1.2rem] w-[375px]'>
 			{trees.map((el, index) => {
 				return (
-					<div className='card w-[90%] bg-base-100 shadow-xl'>
+					<div key={index} className='card w-[90%] bg-base-100 shadow-xl'>
 						<figure>
 							<img
 								src={`http://jalsol.xyz:5000/${el.image_path}`}
@@ -51,7 +51,7 @@ const Trees = () => {
 							<Link to={`/trees/${index + 1}`}>
 								<h2 className='card-title text-teal-700'>{el.name}</h2>
 							</Link>
-							<p className='truncate'>{el.description}</p>
+							<p className='truncate hover:overflow-clip'>{el.description}</p>
 							<div className='card-actions justify-start'>
 								<div className='badge badge-outline capitalize'>{el.space}</div>
 								<div className='badge badge-outline'>{el.period_display}</div>

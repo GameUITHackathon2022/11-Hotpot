@@ -30,6 +30,7 @@ const Step2 = ({ place }) => {
 				tree_id: e.target.id,
 			});
 			console.log(data);
+			window.location.href = '/my-trees';
 		} catch (e) {
 			console.log(e);
 		}
@@ -64,6 +65,15 @@ const Step2 = ({ place }) => {
 								<div className='card-actions justify-start'>
 									<div className='badge badge-outline capitalize'>{place}</div>
 									<div className='badge badge-outline'>{el.period_display}</div>
+									<div className='badge badge-outline'>
+										{el.temperature} degree
+									</div>
+									<div className='badge badge-outline'>
+										{el.upper_moisture_level}
+									</div>
+									<div className='badge badge-outline'>
+										{el.upper_pH_level}pH
+									</div>
 								</div>
 								<form id={index + 1} onSubmit={handleSubmit} action='#'>
 									<button
